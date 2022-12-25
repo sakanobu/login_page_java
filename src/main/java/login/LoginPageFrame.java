@@ -1,5 +1,6 @@
 package login;
 
+import java.awt.Container;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 
@@ -12,6 +13,10 @@ public class LoginPageFrame extends JFrame {
     int height = 1000;
     setSize(width, height);
     setLayout(new FlowLayout());
+
+    Container contentPane = getContentPane();
+
+    contentPane.add(new UsersListPanel());
   }
 
   public static void main(String[] args) {
