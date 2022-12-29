@@ -22,8 +22,8 @@ public class Users {
     String name = "";
     String password = "";
     String sql = """
-        SELECT * FROM users
-        WHERE id = ?
+        SELECT u.id, u.name, u.password FROM users as u
+        WHERE u.id = ?
         """;
 
     try (Connection con = DriverManager.getConnection(url, userName, dbPassword)) {
