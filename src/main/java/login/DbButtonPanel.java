@@ -23,6 +23,8 @@ public class DbButtonPanel extends JPanel {
     add(loginButton);
 
     JButton createButton = new JButton("新規追加");
+    createButton.addActionListener(
+        new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel));
     add(createButton);
 
     JLabel idLabel = new JLabel("ID入力:");

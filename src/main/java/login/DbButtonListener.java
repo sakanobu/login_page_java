@@ -20,13 +20,17 @@ public class DbButtonListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    String name = namePanel.getNameText();
+    String password = passwordPanel.getPasswordText();
+
     if (e.getActionCommand().equals("ログイン")) {
-      if (usersTable.existTargetUser(namePanel.getNameText(),
-          passwordPanel.getPasswordText())) {
+      if (usersTable.existTargetUser(name, password)) {
         resultPanel.setResultLabelText("ログイン OK");
       } else {
         resultPanel.setResultLabelText("ログイン NG");
       }
+    } else if (e.getActionCommand().equals("新規追加")) {
+      usersTable.create(name, password);
     }
     usersListPanel.renderUsersList();
   }
