@@ -22,4 +22,8 @@ public class NamePanel extends JPanel {
     nameField.setHorizontalAlignment(JLabel.LEFT);
     add(nameField);
   }
+
+  public String getNameText() {
+    return nameField.getText();
+  }
 }

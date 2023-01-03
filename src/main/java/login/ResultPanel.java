@@ -16,4 +16,8 @@ public class ResultPanel extends JPanel {
 
     add(resultLabel);
   }
+
+  public void setResultLabelText(String resultText) {
+    resultLabel.setText(resultText);
+  }
 }

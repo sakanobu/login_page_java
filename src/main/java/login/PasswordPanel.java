@@ -22,4 +22,8 @@ public class PasswordPanel extends JPanel {
     passwordField.setHorizontalAlignment(JLabel.LEFT);
     add(passwordField);
   }
+
+  public String getPasswordText() {
+    return passwordField.getText();
+  }
 }

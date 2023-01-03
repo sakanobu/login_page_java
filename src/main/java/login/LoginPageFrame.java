@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 
 public class LoginPageFrame extends JFrame {
+  @SuppressWarnings("checkstyle:VariableDeclarationUsageDistance")
   LoginPageFrame() {
     setTitle("ログイン画面");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -13,22 +14,19 @@ public class LoginPageFrame extends JFrame {
     setSize(width, height);
     setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
 
-    ResultPanel resultPanel = new ResultPanel();
-    add(resultPanel);
-
-    NamePanel namePanel = new NamePanel();
-    add(namePanel);
-
-    PasswordPanel passwordPanel = new PasswordPanel();
-    add(passwordPanel);
-
-    DbButtonPanel dbButtonPanel = new DbButtonPanel();
-    add(dbButtonPanel);
-
     UsersListPanel usersListPanel = new UsersListPanel();
-    add(usersListPanel);
-
+    ResultPanel resultPanel = new ResultPanel();
+    NamePanel namePanel = new NamePanel();
+    PasswordPanel passwordPanel = new PasswordPanel();
+    DbButtonPanel dbButtonPanel =
+        new DbButtonPanel(resultPanel, namePanel, passwordPanel, usersListPanel);
     ReRenderButtonPanel reRenderButtonPanel = new ReRenderButtonPanel(usersListPanel);
+
+    add(resultPanel);
+    add(namePanel);
+    add(passwordPanel);
+    add(dbButtonPanel);
+    add(usersListPanel);
     add(reRenderButtonPanel);
   }
 
