@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DbButtonListener implements ActionListener {
-  UsersRepository usersRepository = new UsersRepository();
+  UsersTable usersTable = new UsersTable();
   ResultPanel resultPanel;
   NamePanel namePanel;
   PasswordPanel passwordPanel;
@@ -21,7 +21,7 @@ public class DbButtonListener implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equals("ログイン")) {
-      if (usersRepository.existTargetUser(namePanel.getNameText(),
+      if (usersTable.existTargetUser(namePanel.getNameText(),
           passwordPanel.getPasswordText())) {
         resultPanel.setResultLabelText("ログイン OK");
       } else {

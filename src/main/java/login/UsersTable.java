@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UsersRepository {
+public class UsersTable {
   private static final String URL = "jdbc:mysql://localhost:3306/login_page_study";
   private static final String DB_USER_NAME = "login_page_study_user";
   private static final String DB_PASSWORD = Dotenv.load().get("MYSQL_PASSWORD");
@@ -18,9 +18,9 @@ public class UsersRepository {
 
 
   public static void main(String[] args) {
-    UsersRepository usersRepository = new UsersRepository();
+    UsersTable usersTable = new UsersTable();
 
-    ArrayList<User> allUserList = usersRepository.findAll();
+    ArrayList<User> allUserList = usersTable.findAll();
 
     System.out.println("↓ findAll()");
     for (User user : allUserList
@@ -28,7 +28,7 @@ public class UsersRepository {
       System.out.printf("%d, %s, %s\n", user.getId(), user.getName(), user.getPassword());
     }
 
-    User user = usersRepository.findUserById("1");
+    User user = usersTable.findById("1");
     System.out.println("\n↓ findUserById()");
     System.out.println("%d, %s, %s".formatted(user.getId(), user.getName(), user.getPassword()));
   }
@@ -37,7 +37,8 @@ public class UsersRepository {
     ArrayList<User> allUserList = new ArrayList<>();
 
     String sql = """
-        SELECT u.id, u.name, u.password FROM users as u
+        SELECT u.id, u.name, u.password
+        FROM users as u
         """;
 
     try {
@@ -73,12 +74,13 @@ public class UsersRepository {
     return allUserList;
   }
 
-  public User findUserById(String targetId) {
+  public User findById(String targetId) {
     int id = -1;
     String name = "";
     String password = "";
     String sql = """
-        SELECT u.id, u.name, u.password FROM users as u
+        SELECT u.id, u.name, u.password
+        FROM users as u
         WHERE u.id = ?
         """;
 

@@ -25,8 +25,8 @@ public class UsersListPanel extends JPanel {
   public void renderUsersList() {
     this.removeAll();
 
-    UsersRepository usersRepository = new UsersRepository();
-    ArrayList<User> allUserList = usersRepository.findAll();
+    UsersTable usersTable = new UsersTable();
+    ArrayList<User> allUserList = usersTable.findAll();
 
     for (User user : allUserList
     ) {
