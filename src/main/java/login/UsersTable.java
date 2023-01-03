@@ -16,21 +16,45 @@ public class UsersTable {
   private PreparedStatement ps = null;
   private ResultSet rs = null;
 
-
   public static void main(String[] args) {
     UsersTable usersTable = new UsersTable();
 
-    ArrayList<User> allUserList = usersTable.findAll();
-
-    System.out.println("↓ findAll()");
-    for (User user : allUserList
+    System.out.println("\n↓ findAll()");
+    for (User user : usersTable.findAll()
     ) {
       System.out.printf("%d, %s, %s\n", user.getId(), user.getName(), user.getPassword());
     }
 
-    User user = usersTable.findById("1");
+    User user1 = usersTable.findById("1");
     System.out.println("\n↓ findUserById()");
-    System.out.println("%d, %s, %s".formatted(user.getId(), user.getName(), user.getPassword()));
+    System.out.println("%d, %s, %s".formatted(user1.getId(), user1.getName(), user1.getPassword()));
+
+    // System.out.println("\n↓ create()");
+    // usersTable.create("a", "b");
+
+    // System.out.println("\n\n↓ findAll()");
+    // for (User user : usersTable.findAll()
+    // ) {
+    //   System.out.printf("%d, %s, %s\n", user.getId(), user.getName(), user.getPassword());
+    // }
+
+    // System.out.println("\n↓ update()");
+    // usersTable.update("11", "aa", "bb");
+
+    // System.out.println("\n\n↓ findAll()");
+    // for (User user : usersTable.findAll()
+    // ) {
+    //   System.out.printf("%d, %s, %s\n", user.getId(), user.getName(), user.getPassword());
+    // }
+
+    // System.out.println("\n↓ delete()");
+    // usersTable.delete("11");
+
+    // System.out.println("\n\n↓ findAll()");
+    // for (User user : usersTable.findAll()
+    // ) {
+    //   System.out.printf("%d, %s, %s\n", user.getId(), user.getName(), user.getPassword());
+    // }
   }
 
   public ArrayList<User> findAll() {
@@ -151,5 +175,105 @@ public class UsersTable {
       }
     }
     return existTargetUser;
+  }
+
+  public void create(String name, String password) {
+    int recordNumber = 0;
+    String sql = """
+        INSERT INTO users(name, password)
+        VALUES(?, ?)
+        """;
+
+    try {
+      con = DriverManager.getConnection(URL, DB_USER_NAME, DB_PASSWORD);
+      ps = con.prepareStatement(sql);
+      ps.setString(1, name);
+      ps.setString(2, password);
+      recordNumber = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (rs != null) {
+          rs.close();
+        }
+        if (ps != null) {
+          ps.close();
+        }
+        if (con != null) {
+          con.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+    System.out.printf("%d行追加しました。", recordNumber);
+  }
+
+  public void update(String id, String name, String password) {
+    int recordNumber = 0;
+    String sql = """
+        UPDATE users
+        SET name = ?, password = ?
+        WHERE id = ?
+        """;
+
+    try {
+      con = DriverManager.getConnection(URL, DB_USER_NAME, DB_PASSWORD);
+      ps = con.prepareStatement(sql);
+      ps.setString(1, name);
+      ps.setString(2, password);
+      ps.setString(3, id);
+      recordNumber = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (rs != null) {
+          rs.close();
+        }
+        if (ps != null) {
+          ps.close();
+        }
+        if (con != null) {
+          con.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+    System.out.printf("%d行更新しました。", recordNumber);
+  }
+
+  public void delete(String id) {
+    int recordNumber = 0;
+    String sql = """
+        DELETE FROM users
+        WHERE id = ?
+        """;
+
+    try {
+      con = DriverManager.getConnection(URL, DB_USER_NAME, DB_PASSWORD);
+      ps = con.prepareStatement(sql);
+      ps.setString(1, id);
+      recordNumber = ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (rs != null) {
+          rs.close();
+        }
+        if (ps != null) {
+          ps.close();
+        }
+        if (con != null) {
+          con.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+    System.out.printf("%d行削除しました。", recordNumber);
   }
 }
