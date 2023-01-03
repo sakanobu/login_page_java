@@ -1,8 +1,6 @@
 package login;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class LoginPageFrame extends JFrame {
@@ -30,10 +28,8 @@ public class LoginPageFrame extends JFrame {
     UsersListPanel usersListPanel = new UsersListPanel();
     add(usersListPanel);
 
-    JButton updateButton = new JButton("更新");
-    updateButton.setAlignmentX(0.5f);
-    updateButton.setBackground(Color.RED);
-    add(updateButton);
+    ReRenderButtonPanel reRenderButtonPanel = new ReRenderButtonPanel(usersListPanel);
+    add(reRenderButtonPanel);
   }
 
   public static void main(String[] args) {
