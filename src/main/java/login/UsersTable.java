@@ -207,7 +207,7 @@ public class UsersTable {
         e.printStackTrace();
       }
     }
-    System.out.printf("%d行追加しました。", recordNumber);
+    System.out.printf("%d行追加しました。\n", recordNumber);
   }
 
   public void update(String id, String name, String password) {
@@ -242,7 +242,7 @@ public class UsersTable {
         e.printStackTrace();
       }
     }
-    System.out.printf("%d行更新しました。", recordNumber);
+    System.out.printf("%d行更新しました。\n", recordNumber);
   }
 
   public void delete(String id) {
@@ -274,6 +274,6 @@ public class UsersTable {
         e.printStackTrace();
       }
     }
-    System.out.printf("%d行削除しました。", recordNumber);
+    System.out.printf("%d行削除しました。\n", recordNumber);
   }
 }
