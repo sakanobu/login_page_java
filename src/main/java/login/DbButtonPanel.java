@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class DbButtonPanel extends JPanel {
-  private final JTextField idField = new JTextField("");
-
   public DbButtonPanel(ResultPanel resultPanel, NamePanel namePanel,
                        PasswordPanel passwordPanel, UsersListPanel usersListPanel) {
     setLayout(new GridLayout(3, 2));
@@ -17,14 +15,16 @@ public class DbButtonPanel extends JPanel {
     int height = 100;
     setPreferredSize(new Dimension(width, height));
 
+    JTextField idField = new JTextField("");
+
     JButton loginButton = new JButton("ログイン");
     loginButton.addActionListener(
-        new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel));
+        new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel, idField));
     add(loginButton);
 
     JButton createButton = new JButton("新規追加");
     createButton.addActionListener(
-        new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel));
+        new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel, idField));
     add(createButton);
 
     JLabel idLabel = new JLabel("ID入力:");
@@ -34,6 +34,8 @@ public class DbButtonPanel extends JPanel {
     add(idField);
 
     JButton updateButton = new JButton("更新");
+    updateButton.addActionListener(
+        new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel, idField));
     add(updateButton);
 
     JButton deleteButton = new JButton("削除");
