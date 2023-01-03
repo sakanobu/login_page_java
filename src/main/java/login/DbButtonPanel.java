@@ -1,5 +1,6 @@
 package login;
 
+import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -39,6 +40,8 @@ public class DbButtonPanel extends JPanel {
     add(updateButton);
 
     JButton deleteButton = new JButton("削除");
+    deleteButton.addActionListener(
+        new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel, idField));
     add(deleteButton);
   }
 }

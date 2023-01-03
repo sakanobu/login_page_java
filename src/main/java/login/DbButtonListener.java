@@ -38,6 +38,8 @@ public class DbButtonListener implements ActionListener {
       usersTable.create(name, password);
     } else if (e.getActionCommand().equals("更新")) {
       usersTable.update(id, name, password);
+    } else if (e.getActionCommand().equals("削除")) {
+      usersTable.delete(id);
     }
     usersListPanel.renderUsersList();
   }
