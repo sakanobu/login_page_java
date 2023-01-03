@@ -113,4 +113,41 @@ public class UsersRepository {
 
     return new User(id, name, password);
   }
+
+  public boolean existTargetUser(String targetName, String targetPassword) {
+    boolean existTargetUser = false;
+    String sql = """
+        SELECT u.id, u.name, u.password
+        FROM users as u
+        WHERE u.name = ?
+        AND u.password = ?
+        """;
+
+    try {
+      con = DriverManager.getConnection(URL, DB_USER_NAME, DB_PASSWORD);
+      ps = con.prepareStatement(sql);
+      ps.setString(1, targetName);
+      ps.setString(2, targetPassword);
+      rs = ps.executeQuery();
+
+      existTargetUser = rs.next();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (rs != null) {
+          rs.close();
+        }
+        if (ps != null) {
+          ps.close();
+        }
+        if (con != null) {
+          con.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+    return existTargetUser;
+  }
 }
