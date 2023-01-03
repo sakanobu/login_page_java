@@ -28,7 +28,7 @@ public class DbButtonPanel extends JPanel {
 
     add(idField);
 
-    JButton updateButton = new JButton("修正");
+    JButton updateButton = new JButton("更新");
     add(updateButton);
 
     JButton deleteButton = new JButton("削除");
