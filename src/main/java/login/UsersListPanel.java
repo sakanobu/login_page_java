@@ -2,6 +2,7 @@ package login;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,5 +20,23 @@ public class UsersListPanel extends JPanel {
       recordLabel.setAlignmentX(0.5f);
       add(recordLabel);
     }
+  }
+
+  public void renderUsersList() {
+    this.removeAll();
+
+    UsersRepository usersRepository = new UsersRepository();
+    ArrayList<User> allUserList = usersRepository.findAll();
+
+    for (User user : allUserList
+    ) {
+      JLabel userRecordLabel =
+          new JLabel("%d %s %s".formatted(user.getId(), user.getName(), user.getPassword()));
+      userRecordLabel.setAlignmentX(0.5f);
+      this.add(userRecordLabel);
+    }
+
+    this.revalidate();
+    this.repaint();
   }
 }
