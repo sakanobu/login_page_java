@@ -14,10 +14,12 @@ public class UsersListPanel extends JPanel {
     setPreferredSize(new Dimension(width, height));
     setBackground(Color.WHITE);
 
-    for (int i = 0; i < 4; i++) {
-      JLabel recordLabel = new JLabel("test" + i);
-      recordLabel.setAlignmentX(0.5f);
-      add(recordLabel);
+    for (User user : new UsersTable().findAll()
+    ) {
+      JLabel userRecordLabel =
+          new JLabel("%d %s %s".formatted(user.getId(), user.getName(), user.getPassword()));
+      userRecordLabel.setAlignmentX(0.5f);
+      this.add(userRecordLabel);
     }
   }
 
