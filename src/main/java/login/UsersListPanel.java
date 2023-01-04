@@ -2,7 +2,6 @@ package login;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,10 +24,7 @@ public class UsersListPanel extends JPanel {
   public void renderUsersList() {
     this.removeAll();
 
-    UsersTable usersTable = new UsersTable();
-    ArrayList<User> allUserList = usersTable.findAll();
-
-    for (User user : allUserList
+    for (User user : new UsersTable().findAll()
     ) {
       JLabel userRecordLabel =
           new JLabel("%d %s %s".formatted(user.getId(), user.getName(), user.getPassword()));
