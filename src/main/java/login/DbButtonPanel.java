@@ -1,6 +1,5 @@
 package login;
 
-import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -21,27 +20,27 @@ public class DbButtonPanel extends JPanel {
     JButton loginButton = new JButton("ログイン");
     loginButton.addActionListener(
         new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel, idField));
-    add(loginButton);
 
     JButton createButton = new JButton("新規追加");
     createButton.addActionListener(
         new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel, idField));
-    add(createButton);
 
     JLabel idLabel = new JLabel("ID入力:");
     idLabel.setHorizontalAlignment(JLabel.RIGHT);
-    add(idLabel);
-
-    add(idField);
 
     JButton updateButton = new JButton("更新");
     updateButton.addActionListener(
         new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel, idField));
-    add(updateButton);
 
     JButton deleteButton = new JButton("削除");
     deleteButton.addActionListener(
         new DbButtonListener(resultPanel, namePanel, passwordPanel, usersListPanel, idField));
+
+    add(loginButton);
+    add(createButton);
+    add(idLabel);
+    add(idField);
+    add(updateButton);
     add(deleteButton);
   }
 }
