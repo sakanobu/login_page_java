@@ -117,9 +117,6 @@ public class UsersTable {
       e.printStackTrace();
     } finally {
       try {
-        if (rs != null) {
-          rs.close();
-        }
         if (ps != null) {
           ps.close();
         }
@@ -153,9 +150,6 @@ public class UsersTable {
       e.printStackTrace();
     } finally {
       try {
-        if (rs != null) {
-          rs.close();
-        }
         if (ps != null) {
           ps.close();
         }
@@ -186,9 +180,6 @@ public class UsersTable {
       e.printStackTrace();
     } finally {
       try {
-        if (rs != null) {
-          rs.close();
-        }
         if (ps != null) {
           ps.close();
         }
