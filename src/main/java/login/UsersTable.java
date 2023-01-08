@@ -57,6 +57,7 @@ public class UsersTable {
     return allUserList;
   }
 
+  // DAO が boolean を返すのは微妙かもしれない
   public boolean existTargetUser(String targetName, String targetPassword) {
     boolean existTargetUser = false;
     String sql = """
