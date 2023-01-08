@@ -9,13 +9,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UsersTable {
-  private static final String URL = "jdbc:mysql://localhost:3306/login_page_study";
-  private static final String DB_USER_NAME = "login_page_study_user";
-  private static final String DB_PASSWORD = Dotenv.load().get("MYSQL_PASSWORD");
+  private final String url;
+  private final String dbUserName;
+  private final String dbPassword;
   private Connection con = null;
   private PreparedStatement ps = null;
   private ResultSet rs = null;
 
+  public UsersTable() {
+    url = Dotenv.load().get("MYSQL_URL");
+    dbUserName = Dotenv.load().get("MYSQL_USER_NAME");
+    dbPassword = Dotenv.load().get("MYSQL_PASSWORD");
+  }
 
   public ArrayList<User> findAll() {
     ArrayList<User> allUserList = new ArrayList<>();
@@ -25,7 +30,7 @@ public class UsersTable {
         """;
 
     try {
-      con = DriverManager.getConnection(URL, DB_USER_NAME, DB_PASSWORD);
+      con = DriverManager.getConnection(url, dbUserName, dbPassword);
       ps = con.prepareStatement(sql);
       rs = ps.executeQuery();
 
@@ -68,7 +73,7 @@ public class UsersTable {
         """;
 
     try {
-      con = DriverManager.getConnection(URL, DB_USER_NAME, DB_PASSWORD);
+      con = DriverManager.getConnection(url, dbUserName, dbPassword);
       ps = con.prepareStatement(sql);
       ps.setString(1, targetName);
       ps.setString(2, targetPassword);
@@ -103,7 +108,7 @@ public class UsersTable {
         """;
 
     try {
-      con = DriverManager.getConnection(URL, DB_USER_NAME, DB_PASSWORD);
+      con = DriverManager.getConnection(url, dbUserName, dbPassword);
       ps = con.prepareStatement(sql);
       ps.setString(1, name);
       ps.setString(2, password);
@@ -138,7 +143,7 @@ public class UsersTable {
         """;
 
     try {
-      con = DriverManager.getConnection(URL, DB_USER_NAME, DB_PASSWORD);
+      con = DriverManager.getConnection(url, dbUserName, dbPassword);
       ps = con.prepareStatement(sql);
       ps.setString(1, name);
       ps.setString(2, password);
@@ -173,7 +178,7 @@ public class UsersTable {
         """;
 
     try {
-      con = DriverManager.getConnection(URL, DB_USER_NAME, DB_PASSWORD);
+      con = DriverManager.getConnection(url, dbUserName, dbPassword);
       ps = con.prepareStatement(sql);
       ps.setString(1, id);
       recordNumber = ps.executeUpdate();
